@@ -5,7 +5,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 IMG_SIZE = 224
 BATCH_SIZE = 32
 DATASET_PATH = "dataset-resized/"
-MODEL_PATH = "garbage_classifier_mobilenetv2.h5"
+MODEL_PATH = "garbage_classifier.h5"
 
 # Загружаем обученную модель
 model = tf.keras.models.load_model(MODEL_PATH)

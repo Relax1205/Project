@@ -61,6 +61,6 @@ model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=["accur
 model.fit(train_data, validation_data=val_data, epochs=EPOCHS)
 
 # Сохраняем модель
-model.save("garbage_classifier_mobilenetv2.h5")
+model.save("garbage_classifier.h5")
 
 print("Модель успешно обучена и сохранена!")
