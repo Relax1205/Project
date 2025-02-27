@@ -33,7 +33,7 @@ with app.app_context():
     db.create_all()
 
 # Загрузка модели классификации
-MODEL_PATH = "garbage_classifier_mobilenetv2.h5"
+MODEL_PATH = "garbage_classifier.h5"
 if os.path.exists(MODEL_PATH):
     model = load_model(MODEL_PATH)
     CLASS_NAMES = ["Бумага", "Стекло", "Металл", "Пластик", "Органика", "Другой"]
