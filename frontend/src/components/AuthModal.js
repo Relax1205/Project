@@ -1,3 +1,4 @@
+// src/components/AuthModal.js
 import React, { useState } from "react";
 import "./AuthModal.css";
 
@@ -23,4 +24,4 @@ const AuthModal = ({ onClose }) => {
     );
 };
 
-export default AuthModal;
+export default AuthModal;  // Это дефолтный экспорт

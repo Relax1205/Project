@@ -1,6 +1,8 @@
+// src/components/Navbar.js
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import AuthModal from "./AuthModal";  // Дефолтный импорт
 
 const Navbar = ({ onAuthClick }) => {
     return (
