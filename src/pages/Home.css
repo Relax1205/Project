@@ -1,0 +1,150 @@
+/* Убираем прокрутку всей страницы */
+body {
+    overflow: hidden;
+}
+
+/* Контейнер для анимации */
+.animated-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+}
+
+/* Анимированные фигуры */
+.shape {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: moveShape 10s infinite alternate ease-in-out;
+}
+
+.shape:nth-child(1) { top: 10%; left: 20%; animation-duration: 8s; }
+.shape:nth-child(2) { top: 50%; left: 70%; animation-duration: 12s; }
+.shape:nth-child(3) { top: 80%; left: 40%; animation-duration: 15s; }
+
+/* Анимация движения */
+@keyframes moveShape {
+    from { transform: translateY(0px); }
+    to { transform: translateY(-30px); }
+}
+
+/* Общий контейнер */
+.home-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    overflow: hidden;
+    padding-top: 180px; /* Сдвигаем контейнер ещё ниже */
+}
+
+/* Заголовок */
+h1 {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 20px;
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 1000;
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Темная тема заголовка */
+body.dark-theme h1 {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Контейнер с прокруткой (основной текст + примеры работы) */
+.scrollable-content {
+    width: 75%; /* Делаем контейнер шире */
+    max-width: 850px; /* Увеличиваем максимальную ширину */
+    height: 65vh; /* Увеличиваем высоту */
+    overflow-y: auto;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 20px; /* Отступ от заголовка */
+    margin-left: 5%; /* Смещаем контейнер чуть правее */
+}
+
+/* Темная тема контейнера */
+body.dark-theme .scrollable-content {
+    background: rgba(0, 0, 0, 0.85);
+    color: white;
+}
+
+/* Секция с дополнительной информацией */
+.extra-info {
+    margin: 50px auto 0 auto; /* Центрируем и сдвигаем вниз */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8); 
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 70%; /* Увеличиваем ширину */
+    text-align: center;
+    position: relative;
+    left: 1%; /* Смещаем правее */
+}
+
+/* Для тёмной темы */
+body.dark-theme .extra-info {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+}
+
+/* Контейнер для скриншотов */
+.screenshot-container {
+    margin-top: 20px;
+}
+
+.screenshots {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.screenshots img {
+    width: 45%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Фиксируем кнопку смены темы */
+.theme-toggle {
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    z-index: 1100; /* Выше, чем у заголовка */
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* Темная тема кнопки */
+body.dark-theme .theme-toggle {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}

@@ -1,59 +1,70 @@
-# 📌 Garbage Classification Web App
+# Getting Started with Create React App
 
-## 📝 Описание
-Этот веб-приложение позволяет загружать изображение мусора и классифицировать его по категориям с помощью обученной нейросети. Также реализованы:
-- 🔐 Регистрация и авторизация пользователей
-- 🏠 Личный кабинет
-- 📂 Загрузка изображений
-- 🤖 Классификация мусора с использованием **MobileNetV2**
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## 🚀 Как запустить проект
+## Available Scripts
 
-### 1️⃣ Установка зависимостей
+In the project directory, you can run:
 
-Перед запуском убедитесь, что у вас установлен **Python 3.10+**. Затем установите необходимые библиотеки:
+### `npm start`
 
-```sh
-pip install -r requirements.txt
-```
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-### 2️⃣ Запуск приложения
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-```sh
-python app.py
-```
+### `npm test`
 
-После этого приложение будет доступно по адресу: **http://127.0.0.1:5000**
-efwefwef
-## ⚙️ Реализация
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### 🖥️ Backend (Flask + TensorFlow)
-- Flask используется для обработки запросов
-- Flask-SQLAlchemy – для работы с базой данных SQLite
-- Flask-Login – для аутентификации пользователей
-- TensorFlow/Keras – для загрузки и использования обученной модели **MobileNetV2**
+### `npm run build`
 
-### 🎨 Frontend (HTML + CSS + JavaScript)
-#### **Файлы:  
-📄 `templates/index.html`** - Главная страница  
-📄 `templates/register.html`** - Регистрация  
-📄 `templates/login.html`** - Авторизация  
-📄 `templates/profile.html`** - Личный кабинет  
-📄 `style.css`** - Стили  
-📄 `script.js`** - JavaScript
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-## 🎨 CSS (style.css)
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## 🔥 Использование
-1. **Перейдите на главную страницу** и зарегистрируйтесь
-2. **Авторизуйтесь** и войдите в личный кабинет
-3. **Загрузите изображение** мусора и нажмите "Определить"
-4. Получите предсказание категории 🎉
+### `npm run eject`
 
----
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-✨ **Автор**: Разработчик этого проекта 😊
-- https://github.com/Relax1205
-- https://github.com/KapRun17
-- https://github.com/froid228
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

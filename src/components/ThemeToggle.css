@@ -1,0 +1,22 @@
+.theme-toggle {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+body.light-theme .theme-toggle {
+    background-color: black;
+    color: white;
+}
+
+body.dark-theme .theme-toggle {
+    background-color: white;
+    color: black;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.05);
+}

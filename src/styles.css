@@ -1,0 +1,90 @@
+/* Светлая тема */
+body.light-theme {
+    background: url("../public/images/гол.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: black;
+}
+
+/* Темная тема */
+body.dark-theme {
+    background: url("../public/images/gg.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+}
+
+/* Центрируем текст */
+.app-container {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Заголовки */
+h1 {
+    background: rgba(255, 255, 255, 0.7); /* Светлый фон */
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: inline-block;
+    text-shadow: none;
+}
+
+/* Темная тема для заголовка */
+body.dark-theme h1 {
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+}
+
+/* Фон для основного текста */
+.text-container {
+    padding: 15px 25px;
+    border-radius: 10px;
+    max-width: 80%;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8); /* Полупрозрачный фон */
+    display: inline-block;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Тень для выделения */
+}
+
+/* Темная тема для основного текста */
+body.dark-theme .text-container {
+    background: rgba(0, 0, 0, 0.8); /* Темный фон */
+    color: white;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Добавляем немного отступов */
+.text-container p {
+    margin: 10px 0;
+}
+
+/* Кнопка смены темы */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+/* Цвет кнопки в зависимости от темы */
+body.light-theme .theme-toggle {
+    background-color: black;
+    color: white;
+}
+
+body.dark-theme .theme-toggle {
+    background-color: white;
+    color: black;
+}
+
+.theme-toggle:hover {
+    opacity: 0.8;
+}
