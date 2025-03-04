@@ -1,3 +1,5 @@
 .venv
 dataset-resized
 test
+node_modules
+build
