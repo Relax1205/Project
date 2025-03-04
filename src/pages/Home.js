@@ -4,10 +4,7 @@ import "./Home.css";
 const Home = () => {
     return (
         <div className="home-container">
-            {/* Заголовок */}
             <h1>Классификация мусора с помощью нейросети</h1>
-
-            {/* Контент с прокруткой */}
             <div className="scrollable-content">
                 <div className="text-container">
                     <p>
@@ -23,8 +20,6 @@ const Home = () => {
                         Помогите окружающей среде! Загружайте фото и сортируйте отходы правильно.
                     </p>
                 </div>
-
-                {/* Новый блок с информацией про нейросеть */}
                 <div className="extra-info">
                     <h2>Как работает нейросеть?</h2>
                     <p>
@@ -37,13 +32,11 @@ const Home = () => {
                         После анализа система определяет категорию мусора: пластик, стекло, бумагу, органику или другие отходы.
                         Это помогает в правильной утилизации и переработке.
                     </p>
-
-                    {/* Место для скриншотов */}
                     <div className="screenshot-container">
                         <p>Примеры работы нейросети:</p>
                         <div className="screenshots">
-                            <img src="/images/а.jpg" alt="Пример работы 1" />
-                            <img src="/images/ж.jpg" alt="Пример работы 2" />
+                            <img src="/images/example_1.jpg" alt="Пример работы 1" />
+                            <img src="/images/example_2.jpg" alt="Пример работы 2" />
 
                         </div>
 

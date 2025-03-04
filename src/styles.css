@@ -1,13 +1,14 @@
+
 /* Светлая тема */
 body.light-theme {
-    background: url("../public/images/гол.jpg") no-repeat center center fixed;
+    background: url("../public/images/background.jpg") no-repeat center center fixed;
     background-size: cover;
     color: black;
 }
 
 /* Темная тема */
 body.dark-theme {
-    background: url("../public/images/gg.jpg") no-repeat center center fixed;
+    background: url("../public/images/background.jpg") no-repeat center center fixed;
     background-size: cover;
     color: white;
 }
