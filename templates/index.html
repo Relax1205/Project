@@ -1,62 +1,18 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Классификация мусора</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 50px;
-        }
-        form {
-            margin-bottom: 20px;
-        }
-        img {
-            max-width: 300px;
-            margin-top: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .auth-links {
-            margin-bottom: 20px;
-        }
-        .auth-links a {
-            margin: 0 10px;
-            text-decoration: none;
-            color: blue;
-        }
-    </style>
-</head>
-<body>
+{% extends "base.html" %}
 
-    <h1>Классификация мусора</h1>
-
-    <div class="auth-links">
-        {% if current_user.is_authenticated %}
-            <span>Вы вошли как {{ current_user.username }}</span>
-            <a href="/logout">Выйти</a>
-        {% else %}
-            <a href="/register">Регистрация</a>
-            <a href="/login">Вход</a>
-        {% endif %}
-    </div>
-
+{% block content %}
+<div class="white-box">
+    <h1>Добро пожаловать!</h1>
+    
     {% if current_user.is_authenticated %}
-        <h2>Загрузите фото мусора</h2>
-        <form action="/" method="post" enctype="multipart/form-data">
-            <input type="file" name="file" accept="image/*" required>
-            <button type="submit">Определить</button>
-        </form>
+        <p>Привет, <strong>{{ current_user.username }}</strong>!</p>
     {% else %}
-        <p>Чтобы загрузить фото, войдите в систему.</p>
+        <p>Чтобы использовать сервис, пожалуйста, <a href="{{ url_for('login') }}">войдите</a> или <a href="{{ url_for('register') }}">зарегистрируйтесь</a>.</p>
     {% endif %}
-
-    {% if image %}
-        <h2>Результат: {{ result }}</h2>
-        <img src="{{ image }}" alt="Загруженное изображение">
-    {% endif %}
-
-</body>
-</html>
+    
+    <p>Этот сервис помогает определить тип отходов на основе изображения с помощью ИИ.</p>
+    <a href="{{ url_for('profile') }}" class="welcome-button">
+        <button>Начать классификацию</button>
+    </a>
+</div>
+{% endblock %}

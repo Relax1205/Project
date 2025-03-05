@@ -107,6 +107,10 @@ def profile():
 
     return render_template("profile.html", result=result, image=image_path)
 
+@app.route("/about", methods=["GET"])
+def about():
+    return render_template("about.html")
+
 @app.route("/logout", methods=["GET", "POST"])
 @login_required
 def logout():

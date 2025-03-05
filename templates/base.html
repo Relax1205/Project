@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Классификация мусора</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('profile') }}">Главная</a></li>
+                    <li><a href="{{ url_for('logout') }}">Выйти</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Войти</a></li>
+                    <li><a href="{{ url_for('register') }}">Зарегистрироваться</a></li>
+                {% endif %}
+                <li><a href="{{ url_for('about') }}">О проекте</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    {% block content %}{% endblock %}
+
+    <footer class="footer">
+        &copy; 2025 Классификация мусора
+    </footer>
+</body>
+</html>
