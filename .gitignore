@@ -1,2 +1,4 @@
 .venv
 dataset-resized
+accuracy.py
+trashAI.py
