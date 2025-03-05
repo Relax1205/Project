@@ -7,7 +7,6 @@ BATCH_SIZE = 32
 DATASET_PATH = "dataset-resized/"
 MODEL_PATH = "garbage_classifier.h5"
 
-
 model = tf.keras.models.load_model(MODEL_PATH)
 
 datagen = ImageDataGenerator(rescale=1./255, validation_split=0.2)

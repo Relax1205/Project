@@ -1,22 +1,32 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Личный кабинет</title>
-</head>
-<body>
-    <h1>Здравствуйте, {{ current_user.username }}!</h1>
-    <a href="/logout">Выйти</a>
+{% extends "base.html" %}
 
-    <h2>Классификация мусора</h2>
-    <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="file" accept="image/*" required>
-        <button type="submit">Определить</button>
-    </form>
+{% block content %}
+<div class="scroll-container">
+    <div class="white-box">
+        <!-- Приветствие -->
+        {% if current_user.is_authenticated %}
+            <h2>Добро пожаловать, {{ current_user.username }}!</h2>
+        {% else %}
+            <h2>Добро пожаловать!</h2>
+            <p>Чтобы использовать сервис, <a href="{{ url_for('login') }}">войдите</a> или <a href="{{ url_for('register') }}">зарегистрируйтесь</a></p>
+        {% endif %}
 
-    {% if image %}
-        <h3>Результат: {{ result }}</h3>
-        <img src="{{ image }}" width="300">
-    {% endif %}
-</body>
-</html>
+        <!-- Основное содержимое -->
+        <h1>Классификация мусора</h1>
+        <p>Загрузите изображение для определения типа отходов:</p>
+        <form method="post" enctype="multipart/form-data">
+            <label class="file-label">Выбор файла:</label>
+            <input type="file" name="file" accept="image/*" required>
+            <button type="submit">Определить</button>
+        </form>
+
+        {% if image %}
+            <img src="{{ image }}" alt="Uploaded Image" style="max-width: 300px; margin: 20px 0;">
+        {% endif %}
+
+        {% if result %}
+            <h2>Результат: {{ result }}</h2>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

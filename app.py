@@ -1,12 +1,14 @@
 import os
+import webbrowser
 import numpy as np
 import tensorflow as tf
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.models import load_model
+import threading
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "supersecretkey"
@@ -18,7 +20,6 @@ bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = "login"
 
-# Модель пользователя
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(150), unique=True, nullable=False)
@@ -28,11 +29,9 @@ class User(db.Model, UserMixin):
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-# Создаем базу данных внутри контекста приложения
 with app.app_context():
     db.create_all()
 
-# Загрузка модели классификации
 MODEL_PATH = "garbage_classifier.h5"
 if os.path.exists(MODEL_PATH):
     model = load_model(MODEL_PATH)
@@ -41,12 +40,20 @@ else:
     model = None
     CLASS_NAMES = []
 
-# Главная страница
-@app.route("/")
-def home():
-    return render_template("index.html")
+@app.before_request
+def force_logout_on_new_session():
+    """Разлогинивает пользователя только при начале новой сессии браузера."""
+    if "session_initialized" not in session:
+        session.clear()
+        session["session_initialized"] = True  # Помечаем, что сессия запущена
+        if current_user.is_authenticated:
+            logout_user()
 
-# Регистрация
+@app.route("/", methods=["GET"])
+@login_required
+def home():
+    return redirect(url_for("profile"))  # Перенаправление сразу в профиль
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -59,19 +66,18 @@ def register():
         return redirect(url_for("login"))
     return render_template("register.html")
 
-# Авторизация
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         user = User.query.filter_by(username=request.form["username"]).first()
         if user and bcrypt.check_password_hash(user.password, request.form["password"]):
-            login_user(user)
+            login_user(user, remember=False)  # Вход без сохранения сессии
+            session["session_initialized"] = True  # Обновляем флаг, что пользователь вошел
             return redirect(url_for("profile"))
         else:
             flash("Неверные данные!", "danger")
     return render_template("login.html")
 
-# Личный кабинет (защищенная страница)
 @app.route("/profile", methods=["GET", "POST"])
 @login_required
 def profile():
@@ -79,7 +85,7 @@ def profile():
     image_path = None
 
     if request.method == "POST":
-        file = request.files["file"]
+        file = request.files.get("file")
         if file:
             filename = "upload.jpg"
             filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
@@ -87,27 +93,35 @@ def profile():
             image_path = url_for("static", filename=filename)
 
             if model:
-                # Обработка изображения
                 img = image.load_img(filepath, target_size=(224, 224))
                 img_array = image.img_to_array(img) / 255.0
                 img_array = np.expand_dims(img_array, axis=0)
 
-                # Предсказание
                 predictions = model.predict(img_array)
                 class_idx = np.argmax(predictions)
                 result = CLASS_NAMES[class_idx]
             else:
                 result = "Ошибка: Модель не загружена."
+        else:
+            flash("Файл не выбран", "warning")
 
     return render_template("profile.html", result=result, image=image_path)
 
-# Выход
-@app.route("/logout")
+@app.route("/about", methods=["GET"])
+def about():
+    return render_template("about.html")
+
+@app.route("/logout", methods=["GET", "POST"])
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for("home"))
+    session.clear()  # Очищаем сессию
+    return redirect(url_for("login"))
 
-# Запуск сервера
+def open_browser():
+    webbrowser.open("http://127.0.0.1:5000/")
+
 if __name__ == "__main__":
+    if not os.environ.get("WERKZEUG_RUN_MAIN"):  # Проверяем, не выполняется ли перезапуск Flask
+        threading.Timer(1.25, open_browser).start()
     app.run(debug=True)

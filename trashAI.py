@@ -53,5 +53,5 @@ model = Sequential([
 model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=["accuracy"])
 
 model.fit(train_data, validation_data=val_data, epochs=EPOCHS)
-model.save("garbage_classifier_mobilenetv2.h5")
+
 print("Модель успешно обучена и сохранена!")
