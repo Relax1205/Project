@@ -9,7 +9,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.models import load_model
 import threading
-
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "supersecretkey"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
@@ -124,4 +124,5 @@ def open_browser():
 if __name__ == "__main__":
     if not os.environ.get("WERKZEUG_RUN_MAIN"):  # Проверяем, не выполняется ли перезапуск Flask
         threading.Timer(1.25, open_browser).start()
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
+
