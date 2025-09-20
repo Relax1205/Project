@@ -34,7 +34,7 @@ python app.py
 - TensorFlow/Keras – для загрузки и использования обученной модели **MobileNetV2**
 
 ### 🎨 Frontend (HTML + CSS)
-#### **Файлы:  
+#### **Файлы**:  
 📄 `templates/index.html` - Главная страница  
 📄 `templates/register.html` - Регистрация  
 📄 `templates/login.html` - Авторизация  
